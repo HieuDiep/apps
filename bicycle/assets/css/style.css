@@ -1,0 +1,269 @@
+html, body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.icon{
+    height: auto;
+}
+
+
+.menu{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li a{
+    color: #4d4959;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 15px;;
+    line-height: 20px;
+    transition: 0.5s;
+}
+
+.menu li a:hover{
+    transform: scale(1.3);
+}
+
+.content-0{
+    background-color: #f7f7f7;
+    padding: 100px;
+}
+
+.content-1{
+    background-color: white;
+}
+
+.bgcircle{
+    background: url(./img_bicycle/bike1.png);
+    background-size: auto;
+    background-size: cover;
+    position: relative;
+    background-repeat:no-repeat;
+    background-position:center;
+    display: flex;
+    min-height: 700px;
+}
+
+.bgcircle2{
+    background-image: url(./img_bicycle/bike3.png);
+     position: relative;
+     background-size: cover;
+     min-height: 700px;
+}
+
+.header-contain{
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./img_bicycle/header-banner.png");
+    background-position: center;
+    background-repeat: none;
+}
+
+.body-content{
+    align-items: center;
+}
+
+.text{
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    color: #848789; 
+    font-weight: normal;
+    line-height: 34px;
+    margin: 0 50px;
+}
+.text1{
+    font-style: italic;
+    font-weight: normal;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.text3{
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    color: #848789;
+    font-weight: normal;
+    line-height: 34px;
+    padding: 0 30px;
+}
+
+.text4{
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    color: #848789; 
+    font-weight: normal;
+    line-height: 34px;
+    margin: 0 20px;
+}
+
+.text-2{
+    margin: auto;
+}
+
+.text-2::after{
+    content: "";
+    display: inline-flex;
+    height: 2rem;
+    vertical-align: bottom;
+    width: 10%;
+    margin-top: 23px;
+    align-items: center;
+    border-top: 2px solid #d7d7d7;
+    opacity: 0.7;
+}
+
+img{
+    max-width: 100%;
+    filter: none;
+    object-fit: cover;
+}
+
+.img2{
+    width: 100%;
+}
+
+.bgcircle {
+    position: relative;
+}
+
+.img0{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    height: auto;
+}
+
+.img1{
+    width: 50%;
+    height: 100%;
+    filter: none;
+    object-fit: cover
+}
+
+.content-4{
+    padding: 100px 50px 10px 50px;
+}
+
+.twitter-logo{
+    color:#56c7ee;
+    font-size: 26px;
+}
+
+.sub{
+    font-family: "Lato",sans-serif;
+    font-size: 16px;
+    color: #848789;
+    font-weight: lighter;
+    line-height: 24px;
+}
+
+.content-6{
+    padding: 80px 0;
+    background-color: #282f35;
+
+}
+
+.btn{
+    background-color: #282f35;
+    color: white;
+    border: 1px solid white;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 50px;
+    margin: 0px;
+    width: 300px;
+    letter-spacing: 5px;
+}
+
+.btn:hover{
+    background-color: rgb(221, 221, 221);
+    color: #656768;
+}
+
+.content-7{
+    padding: 100px;
+}
+
+.input1{
+    color: lightgray;
+    padding: 25px;
+    width: 30%;
+}
+
+.letter-spacing{
+    letter-spacing: 5px;
+}
+
+.btn2{
+    height: 78px;
+    width: 7%;
+    min-width: 35px;
+    border: 1px solid mediumaquamarine ;
+    color: mediumaquamarine;
+    background-color: mediumaquamarine;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn2:hover{
+    background-color: white;
+    border: 1px solid mediumaquamarine;
+    color: mediumaquamarine;
+}
+
+.img3{
+    width: 30px;
+    cursor: pointer;
+}
+
+.item{
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.poiter{
+    
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    list-style-type: none;
+    padding-top: 60px;
+    margin: 0;
+    text-align: end;
+
+}
+
+
+
+.poiter li{
+    height: 13px;
+    width: 13px;
+    display: block;
+    border: 2px solid gainsboro;
+    border-radius: 100%;
+    margin: 10px;
+}
+
+.poiter li:hover{
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+.hover:hover{
+    opacity: 0.6;
+    background-image: url(img_bicycle/icon-7.png);
+    background-color: #00ac64;
+    
+}
