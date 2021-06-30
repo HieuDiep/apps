@@ -7,23 +7,18 @@
   flex-box: 
     Display:flex
     Flex-swap: Wrap
-    Flex-direction:row
+    
     bootstrap: d-flex,flex-row, flex-swap
-    justify-content-sm,md,lg,lx:flex-end,flex-start,center
-      /* Distributed alignment */
-    justify-content: space-between; /* Distribute items evenly
-                                       The first item is flush with the start,
-                                       the last is flush with the end */
-    justify-content: space-around;  /* Distribute items evenly
-                                       Items have a half-size space
-                                       on either end */
-    justify-content: space-evenly;  /* Distribute items evenly
-                                       Items have equal space around them */
-    justify-content: stretch;       /* Distribute items evenly
-                                       Stretch 'auto'-sized items to fit
-                                      the container */
-    align-item: end,start,center, baseline,stretch
-    align-self:end,start,center,baseline,stretch
+    
+    Flex-direction:row : xác định trục chính
+    
+    justify-content-sm,md,lg,lx:flex-end,flex-start,center: sắp xếp các hạng mục theo trục chính
+    
+    order:1: chỉ rõ thứ tự các hạng mục
+    
+    align-item: end,start,center, baseline,stretch: sắp xếp các hạng mục theo trục ngang
+    
+    align-self:end,start,center,baseline,stretch sắp xếp các hạng mục theo trục ngang, ghì đè lên alignitem
     fill
     grow && shrink
     automargin
