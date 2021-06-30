@@ -7,5 +7,7 @@
     justify-content-sm,md,lg,lx: end,start,center,between,around 
     align-item: end,start,center, baseline,stretch
     align-self:end,start,center,baseline,stretch
-     
+    fill
+    grow && shrink
+    automargin
   position: static (default),relative,absolute,fixed
