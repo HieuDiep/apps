@@ -14,11 +14,14 @@
     
     justify-content-sm,md,lg,lx:flex-end,flex-start,center: sắp xếp các hạng mục theo trục chính
     
+    Một trong các thuộc tính (justify-content) thuộc về trục chính,
+    trong khi ba thuộc tính khác (align-items, align-self, align-content) thuộc về trục dọc.
+    
     order:1: chỉ rõ thứ tự các hạng mục
     
-    align-item: end,start,center, baseline,stretch: sắp xếp các hạng mục theo trục ngang
+    align-item: end,start,center, baseline,stretch:
     
-    align-self:end,start,center,baseline,stretch sắp xếp các hạng mục theo trục ngang, ghì đè lên align-item
+    align-self:end,start,center,baseline,stretch sắp xếp các, ghì đè lên align-item
     fill
     grow && shrink
     automargin
