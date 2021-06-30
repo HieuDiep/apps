@@ -6,7 +6,7 @@
 - Day 3:
   flex-box: 
     Display:flex
-    Flex-swap: Wrap
+    Flex-swap: Wrap: đảo chiều
     
     bootstrap: d-flex,flex-row, flex-swap
     
@@ -18,7 +18,7 @@
     
     align-item: end,start,center, baseline,stretch: sắp xếp các hạng mục theo trục ngang
     
-    align-self:end,start,center,baseline,stretch sắp xếp các hạng mục theo trục ngang, ghì đè lên alignitem
+    align-self:end,start,center,baseline,stretch sắp xếp các hạng mục theo trục ngang, ghì đè lên align-item
     fill
     grow && shrink
     automargin
