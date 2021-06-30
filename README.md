@@ -1,4 +1,4 @@
-- Day 3
+- Day 3:
   flex-box: 
     Display:flex
     Flex-swap: Wrap
