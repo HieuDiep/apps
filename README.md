@@ -10,4 +10,4 @@
     fill
     grow && shrink
     automargin
-  position: static (default),relative,absolute,fixed
+  position: static (default),relative,absolute,fixed,sticked
