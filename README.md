@@ -1,3 +1,8 @@
+- Day 2:
+  Container,Container-fluid
+    row
+      col-md-3
+      
 - Day 3:
   flex-box: 
     Display:flex
