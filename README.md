@@ -26,3 +26,18 @@
     grow && shrink
     automargin
   position: static (default),relative,absolute,fixed,sticked
+  
+- Day 4:
+  + Pseodo-element(phần tử giả):tạo style đặc biệt cho phần tử được chọn
+    ::after
+    ::before
+    ::first-letter
+    ::first-line
+    ::selection
+  + Pseodo-class: Định nghĩa 1 trạng thái đặc biệt cho phần tử được chọn
+    :active
+    :focus
+    :hover
+    :first-child
+    :target
+  
