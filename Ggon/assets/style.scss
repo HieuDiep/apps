@@ -1,0 +1,150 @@
+@keyframes showimg{
+    from{
+        width: 10px;
+    }
+    to{
+        width: 470px;
+    }
+}
+.nav-header{
+    margin:0 100px;
+    padding: 10px 0 0 0;
+}
+.list{
+    margin-right: 10px;
+    li{
+        padding: 0 10px;
+    }
+}
+
+.brand{
+    font-size: 150px;
+    color: white;
+}
+
+.banner {
+    height: 675px;
+    background: radial-gradient(50% 50% at 50% 50%, #012f41 0%, #03101b 100%);
+}
+.banner-width{
+}
+
+.text{
+    padding: 0 0 0 100px;
+}
+.slogan-text{
+    color: white;
+    padding: 0 0 0 100;
+}
+.usecase{
+    margin: 0 100px 0 100px;
+    .usecase-l{
+        padding: 0 0 0 100px;
+        width: 75%;
+        background-color: #f6f4ec;
+        color: #444444;
+        border-radius: 30px 0 0 30px;
+        padding: 25px 30px;
+    
+    }
+    .usecase-r{
+        background-color: #d9c377;
+        border-radius:  0 30px 30px 0;
+        padding: 25px 30px;
+        width: 25%;
+        color: white;
+    }
+    
+}
+main{
+    background-image: url(img/the-rest/body-content1-img.png);
+    background-repeat: no-repeat;
+    .ecommerce{
+        .ecommerce_box{
+            padding: 70px;
+            .e-img{
+                width: 40%;
+                .fadein{
+                    animation-duration: 5s;
+                    animation-name: "showimg";
+                }
+            }
+        }
+    }
+    .advert{
+        background-color: #f6f4ec;
+        .ad-1{
+            padding: 50px 20px 50px 50px;
+        }
+    }
+    .gaming{
+        background-color: rgb(217, 247, 211);
+    }
+    .token{
+        background-image: url(img/the-rest/token-bg.png);
+        height: 100vh;;
+        .tokencon{
+            padding: 70px 10px;
+            .token-box{
+                position: absolute;
+                background: #ebd79d;
+            }
+            .token-2{
+                background-image: url(img/icon/Group29.png);
+                background-repeat: no-repeat;
+                background-position:center;
+            }
+            .box_1{
+                top: -80px;
+                right: 0px;
+                width: 228px;
+                padding: 13px 12px;
+                border-radius: 6px 6px 6px 0px;
+            }
+            .box_2{
+                animation-delay: 1.4s;
+                bottom: -50px;
+                left: 29px;
+                width: 177px;
+                padding: 13px 12px;
+                border-radius: 6px 0px 6px 6px;
+            }
+            .box_3{
+                animation-delay: 2s;
+                bottom: 7px;
+                right: 5px;
+                width: 177px;
+                padding: 13px 12px;
+                border-radius: 0px 6px 6px 6px;
+            }
+        }
+        
+    }
+}
+.casino1{
+    background-image: url(img/the-rest/decentrialized-left-1.png);
+}
+.text2{
+    color: #444;
+    background-color: #f6f4ec;
+    padding: 20px;
+ }
+.icon{
+    margin-right: 30px;
+    width: 70px;
+    height: 70px;
+    padding: 15px 15px;
+    background: #012f41;
+    border-radius: 30px;
+}
+
+// h5{
+//     padding: 10px 0 5px 0;
+// }
+p{
+    font-size: 13px;
+    font-family: "Poppins", sans-serif;
+    font-weight: normal;
+    line-height: 19px;
+    color: #444;
+}
