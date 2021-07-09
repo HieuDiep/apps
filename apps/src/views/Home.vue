@@ -33,7 +33,9 @@
       <form action="">
         <div class="contain_del">
           <h4 class="del_head">Delete data</h4>
-          <p class="p-3 text-danger">Are you sure you want to delete your data ?</p>
+          <p class="p-3 text-danger">
+            Are you sure you want to delete your data ?
+          </p>
           <div class="clearfix d-flex justify-content-end">
             <button
               type="button"
@@ -56,34 +58,52 @@
     <div class="containbox position-absolute border" v-if="show">
       <form action="" class="">
         <h4 class="p-2 m-0 head_add">Add Data</h4>
+        <p class="m-0" v-if="errors.length">
+          <b class="text-danger m-0">
+            Invalid input:
+            <h6
+              class="font-italic text-danger m-0"
+              v-for="error in errors"
+              :key="error.id"
+            >
+              {{ error }}
+            </h6>
+          </b>
+        </p>
         <div class="row mx-3">
           <div class="col mt-3">
             <label for="">Name</label><br />
-            <input class="input" type="text" v-model="name" /> <br />
+            <input class="input" type="text" v-model="name" :class="{errorInput:isErrors[0]}" @focus="isErrors[0]=false"/> <br />
             <label for="">Price</label><br />
-            <input class="input" type="text" v-model="id" /> <br />
+            <input class="input" type="text" v-model="id" :class="{errorInput:isErrors[1]}" @focus="isErrors[1]=false"/> <br />
             <label for="">Link</label><br />
-            <input class="input" type="text" v-model="link" /> <br />
+            <input class="input" type="text" v-model="link" :class="{errorInput:isErrors[2]}" @focus="isErrors[2]=false"/> <br />
           </div>
           <div class="col mt-3">
             <label for="">Description</label><br />
-            <input class="input" type="text" v-model="description" /> <br />
+            <input class="input" type="text" v-model="description" :class="{errorInput:isErrors[3]}" @focus="isErrors[3]=false"/> <br />
             <label for="">Created at</label><br />
-            <input class="input" type="date" v-model="created_at" /> <br />
+            <input class="input" type="date" v-model="created_at" :class="{errorInput:isErrors[4]}" @focus="isErrors[4]=false"/> <br />
             <label for="">Updated at</label><br />
-            <input class="input" type="date" v-model="updated_at" /> <br />
+            <input class="input" type="date" v-model="updated_at" :class="{errorInput:isErrors[5]}" @focus="isErrors[5]=false"/> <br />
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <button @click="show = false" class="btn btn-sm btn-light btn_back m-2">
+          <button
+            @click="show = false"
+            class="btn btn-sm btn-light btn_back m-2"
+          >
             <font-awesome-icon icon="fa-arrow-left" />
             Back
           </button>
-          <button type="submit" @click="addNew()" class="btn btn-sm btn-primary m-2">
+          <button
+            type="submit"
+            @click="addNew()"
+            class="btn btn-sm btn-primary m-2"
+          >
             Submit
           </button>
         </div>
-
       </form>
     </div>
     <table class="table mt-3 border">
@@ -140,7 +160,7 @@ export default {
         link: "https://infotrac.gale.com/itweb",
         description: "Phân khối lớn",
         created_at: "2022-07-31",
-        updated_at: null,
+        updated_at: "2021-07-27",
       },
       {
         id: 53000,
@@ -176,6 +196,8 @@ export default {
       },
     ];
     return {
+      isErrors:[false,false,false,false,false,false],
+      errors: [],
       temp_item: "",
       del_show: false,
       fromYear: "",
@@ -217,9 +239,61 @@ export default {
     funcAdd() {
       this.show = true;
       this.add = true;
+      //reset input
+      this.name = "";
+      this.id = "";
+      this.link = "";
+      this.description = "";
+      this.created_at = "";
+      this.updated_at = "";
+      this.errors = [];
+      this.isErrors=[];
+
     },
     addNew() {
-      if (this.add && this.name != "") {
+      this.errors = [];
+      if (!this.name) {
+        this.isErrors[0]=true;
+        this.errors.push("Name required.");
+        this.show = true;
+      }
+      if (!this.id) {
+        this.isErrors[1]=true;
+        this.errors.push("Price required.");
+        this.show = true;
+      }
+      if (!this.link) {
+        this.isErrors[2]=true;
+        this.errors.push("Link required.");
+        this.show = true;
+      }
+      if (!this.description) {
+        this.isErrors[3]=true;
+        this.errors.push("Age required.");
+        this.show = true;
+      }
+      if (!this.created_at) {
+        this.isErrors[4]=true;
+        this.errors.push("Created at required.");
+        this.show = true;
+      }
+      if (!this.updated_at) {
+        this.isErrors[5]=true;
+        this.errors.push("Updated at required.");
+        this.show = true;
+      }
+      if (
+        !this.updated_at ||
+        !this.created_at ||
+        !this.description ||
+        !this.link ||
+        !this.id ||
+        !this.name
+      ) {
+        this.show = true;
+        return 0;
+      }
+      if (this.add) {
         this.ProductInstance.push({
           id: this.id,
           name: this.name,
@@ -230,6 +304,10 @@ export default {
         });
         this.show = false;
       } else {
+        this.show = true;
+      }
+      if (!this.add) {
+        this.errors = [];
         this.tempItem = {
           id: this.id,
           name: this.name,
@@ -242,6 +320,7 @@ export default {
         this.ProductInstance[this.temp] = this.tempItem;
         this.show = false;
       }
+      this.errors = [];
     },
     comf_delete(item) {
       console.log("hello");
@@ -254,6 +333,7 @@ export default {
       this.del_show = false;
     },
     editItem(item, i) {
+      this.errors = [];
       this.show = true;
       this.add = false;
       this.id = item.id;
@@ -277,6 +357,7 @@ export default {
 }
 .containbox {
   right: 25%;
+  top: 15%;
   background-color: #d6d6d6;
   box-shadow: 1px 1px 1px 3px #e0e0e0;
 }
@@ -297,7 +378,7 @@ export default {
 }
 .dialog_del {
   right: 35%;
-  padding-bottom:15px;
+  padding-bottom: 15px;
   background-color: #f0f0f0;
   box-shadow: 1px 1px 1px 3px #e0e0e0;
 }
@@ -311,14 +392,17 @@ export default {
   overflow: hidden;
   font-size: 14px;
 }
-.del_head{
-  background-color:  rgb(119, 119, 255);
-    color: white;
-    font-weight: 500;
-    padding: 5px;
+.del_head {
+  background-color: rgb(119, 119, 255);
+  color: white;
+  font-weight: 500;
+  padding: 5px;
 }
-.head_add{
+.head_add {
   background-color: #0d6efd;
-    color: white;
+  color: white;
+}
+.errorInput{
+  border:1px solid red;
 }
 </style>
