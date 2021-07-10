@@ -58,7 +58,7 @@
     <div class="containbox position-absolute border" v-if="show">
       <form action="" class="">
         <h4 class="p-2 m-0 head_add">Add Data</h4>
-        <p class="m-0" v-if="errors.length">
+        <!-- <p class="m-0" v-if="errors.length">
           <b class="text-danger m-0">
             Invalid input:
             <h6
@@ -69,23 +69,29 @@
               {{ error }}
             </h6>
           </b>
-        </p>
+        </p> -->
         <div class="row mx-3">
           <div class="col mt-3">
             <label for="">Name</label><br />
             <input class="input" type="text" v-model="name" :class="{errorInput:isErrors[0]}" @focus="isErrors[0]=false"/> <br />
+            <p class="text-danger text_err m-0" v-show="isErrors[0]">{{errors[0]}}</p>
             <label for="">Price</label><br />
             <input class="input" type="text" v-model="id" :class="{errorInput:isErrors[1]}" @focus="isErrors[1]=false"/> <br />
+            <p class="text-danger text_err m-0" v-show="isErrors[1]">{{errors[1]}}</p>
             <label for="">Link</label><br />
             <input class="input" type="text" v-model="link" :class="{errorInput:isErrors[2]}" @focus="isErrors[2]=false"/> <br />
+            <p class="text-danger text_err m-0" v-show="isErrors[2]">{{errors[2]}}</p>
           </div>
           <div class="col mt-3">
             <label for="">Description</label><br />
             <input class="input" type="text" v-model="description" :class="{errorInput:isErrors[3]}" @focus="isErrors[3]=false"/> <br />
+            <p class="text-danger text_err m-0" v-show="isErrors[3]">{{errors[3]}}</p>
             <label for="">Created at</label><br />
-            <input class="input" type="date" v-model="created_at" :class="{errorInput:isErrors[4]}" @focus="isErrors[4]=false"/> <br />
+            <input class="input day_input" type="date" v-model="created_at" :class="{errorInput:isErrors[4]}" @focus="isErrors[4]=false"/> <br />
+            <p class="text-danger text_err m-0" v-show="isErrors[4]">{{errors[4]}}</p>
             <label for="">Updated at</label><br />
-            <input class="input" type="date" v-model="updated_at" :class="{errorInput:isErrors[5]}" @focus="isErrors[5]=false"/> <br />
+            <input class="input day_input" type="date" v-model="updated_at" :class="{errorInput:isErrors[5]}" @focus="isErrors[5]=false"/> <br />
+            <p class="text-danger text_err m-0" v-show="isErrors[5]">{{errors[5]}}</p>
           </div>
         </div>
         <div class="d-flex justify-content-end">
@@ -197,7 +203,7 @@ export default {
     ];
     return {
       isErrors:[false,false,false,false,false,false],
-      errors: [],
+      errors: ['','','','','',''],
       temp_item: "",
       del_show: false,
       fromYear: "",
@@ -246,7 +252,7 @@ export default {
       this.description = "";
       this.created_at = "";
       this.updated_at = "";
-      this.errors = [];
+      this.errors= ['','','','','',''],
       this.isErrors=[];
 
     },
@@ -254,32 +260,33 @@ export default {
       this.errors = [];
       if (!this.name) {
         this.isErrors[0]=true;
-        this.errors.push("Name required.");
+        this.errors[0]="Name required.";
         this.show = true;
       }
       if (!this.id) {
         this.isErrors[1]=true;
         this.errors.push("Price required.");
+        this.errors[1]="Name required.";
         this.show = true;
       }
       if (!this.link) {
         this.isErrors[2]=true;
-        this.errors.push("Link required.");
+        this.errors[2]="Link required.";
         this.show = true;
       }
       if (!this.description) {
         this.isErrors[3]=true;
-        this.errors.push("Age required.");
+        this.errors[3]="Age required.";
         this.show = true;
       }
       if (!this.created_at) {
         this.isErrors[4]=true;
-        this.errors.push("Created at required.");
+        this.errors[4]="Created at required.";
         this.show = true;
       }
       if (!this.updated_at) {
         this.isErrors[5]=true;
-        this.errors.push("Updated at required.");
+        this.errors[5]="Updated at required.";
         this.show = true;
       }
       if (
@@ -307,7 +314,8 @@ export default {
         this.show = true;
       }
       if (!this.add) {
-        this.errors = [];
+        this.errors=['','','','','',''],
+        this.isErrors=[false,false,false,false,false,false],
         this.tempItem = {
           id: this.id,
           name: this.name,
@@ -320,7 +328,7 @@ export default {
         this.ProductInstance[this.temp] = this.tempItem;
         this.show = false;
       }
-      this.errors = [];
+      this.errors ['','','','','',''];
     },
     comf_delete(item) {
       console.log("hello");
@@ -333,7 +341,7 @@ export default {
       this.del_show = false;
     },
     editItem(item, i) {
-      this.errors = [];
+      this.errors ['','','','','',''];
       this.show = true;
       this.add = false;
       this.id = item.id;
@@ -349,6 +357,12 @@ export default {
 };
 </script>
 <style scoped>
+.day_input{
+  width: 203px;
+}
+.text_err{
+  font-size: 12px;
+}
 .form_box {
   margin: 0 auto;
 }
@@ -358,7 +372,7 @@ export default {
 .containbox {
   right: 25%;
   top: 15%;
-  background-color: #d6d6d6;
+  background-color: #ffffff;
   box-shadow: 1px 1px 1px 3px #e0e0e0;
 }
 .pointer {
@@ -379,7 +393,7 @@ export default {
 .dialog_del {
   right: 35%;
   padding-bottom: 15px;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   box-shadow: 1px 1px 1px 3px #e0e0e0;
 }
 .data_inline {
