@@ -24,7 +24,7 @@
       <div class="px-2">Add</div>
     </div>
     <br />
-    <div class="dialog_del containbox position-absolute" v-show="del_show" @keydown="del_show = false" tabindex="0">
+    <div class="dialog_del containbox position-absolute" v-show="del_show" @keydown.esc="del_show = false"  tabindex="0">
       <form action="">
         <div class="contain_del">
           <h4 class="del_head">Delete data</h4>
@@ -43,6 +43,7 @@
               ref="del_focus"
               type="button"
               class="btn-sm btn-danger mx-3"
+              style="outline:none"
               @click="deletedata(temp_item)"
             >
               Delete
@@ -51,13 +52,7 @@
         </div>
       </form>
     </div>
-    <div
-      class="containbox position-absolute border"
-      v-show="show"
-      @keydown="show = false"
-      tabindex="0"
-      ref="edit_focus"
-    >
+    <div class="containbox position-absolute border" v-show="show" @keydown.esc="show = false" tabindex="0">
       <form action="" class="">
         <h4 class="p-2 m-0 head_add">Add Data</h4>
         <div class="row mx-3">
@@ -69,7 +64,7 @@
               v-model="name"
               :class="{ errorInput: isErrors.name }"
               @focus="isErrors.name = false"
-              ref="input2"
+              ref="edit_focus"
             />
             <br />
             <p class="text-danger text_err m-0" v-show="isErrors.name">
@@ -82,8 +77,7 @@
               v-model="id"
               :class="{ errorInput: isErrors.id }"
               @focus="isErrors.id = false"
-            />
-            <br />
+            /><br/>
             <p class="text-danger text_err m-0" v-show="isErrors.id">
               {{ errors.id }}
             </p>
@@ -356,13 +350,6 @@ export default {
           created_at: false,
           updated_at: false,
         });
-      /*
-        nextTick( [callback, context] )
-      Defer the callback to be executed after the next DOM update cycle.
-       Use it immediately after you’ve changed some data to wait for the DOM update.*/
-      this.$nextTick(() => {
-        this.$refs.input2.focus();
-      });
     },
     addNew() {
       this.isErrors = {
