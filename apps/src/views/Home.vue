@@ -2,11 +2,12 @@
   <div class="position-relative container-fluid">
     <h4 class="m-3">BẢNG DANH SÁCH</h4>
     <font-awesome-icon icon="fa-long-arrow-alt-left" class="mr-2" />
+    <!-- @keydown.enter="filterByName(nameFilter)" -->
     <input
       type="text"
-      @keydown.enter="filterByName(nameFilter)"
       v-model="nameFilter"
       placeholder="Find Name"
+      ref="input"
     />
     <input
       type="date"
@@ -22,13 +23,14 @@
     />
     <!-- <div class="btn m-2" @click="filterByYear(fromYear,toYear)"><font-awesome-icon icon="filter" /></div> -->
     <div
-      @click="funcAdd"
+      @click="setTimeout(funcAdd(),1000)"
       class="add float-right ml-5 add d-flex align-items-center btn-sm pointer"
     >
       <font-awesome-icon icon="plus" class="mr-2" />
       <div class="px-2">Add</div>
     </div>
     <br />
+    <p>{{answer}}</p>
     <div class="dialog_del containbox position-absolute" v-if="del_show">
       <form action="">
         <div class="contain_del">
@@ -73,7 +75,7 @@
         <div class="row mx-3">
           <div class="col mt-3">
             <label for="">Name</label><br />
-            <input class="input" type="text" v-model="name" :class="{errorInput:isErrors[0]}" @focus="isErrors[0]=false"/> <br />
+            <input class="input" type="text" v-model="name" :class="{errorInput:isErrors[0]}" @focus="isErrors[0]=false" ref="input2"/> <br />
             <p class="text-danger text_err m-0" v-show="isErrors[0]">{{errors[0]}}</p>
             <label for="">Price</label><br />
             <input class="input" type="text" v-model="id" :class="{errorInput:isErrors[1]}" @focus="isErrors[1]=false"/> <br />
@@ -202,6 +204,7 @@ export default {
       },
     ];
     return {
+      answer:'Không thể tìm thấy nếu bạn chưa nhập',
       isErrors:[false,false,false,false,false,false],
       errors: ['','','','','',''],
       temp_item: "",
@@ -223,13 +226,23 @@ export default {
       ProductInstance2: initProductInstance,
     };
   },
-  watch: {},
+
+  watch: {
+    nameFilter: function(){
+      this.answer='Đang chờ bạn nhập...';
+      this.filterByName(this.nameFilter);
+    },
+  },
   methods: {
+    focusInput(){
+      this.$refs.input.focus();
+    },
     filterByName(e) {
       if (e != "") {
         const a = this.ProductInstance2.filter((item) => {
-          console.log(item.name == e);
-          return item.name == e;
+          console.log(item.name,e);
+          item.name === e ? this.answer='Đã tìm thấy ':this.answer='Không tìm thấy ';
+          return item.name === e;
         });
         console.log(a);
         this.ProductInstance = a;
@@ -254,7 +267,13 @@ export default {
       this.updated_at = "";
       this.errors= ['','','','','',''],
       this.isErrors=[];
-
+      /*
+        nextTick( [callback, context] )
+      Defer the callback to be executed after the next DOM update cycle.
+       Use it immediately after you’ve changed some data to wait for the DOM update.*/
+      this.$nextTick(()=>{
+        this.$refs.input2.focus(); 
+      })
     },
     addNew() {
       this.errors = [];
@@ -354,6 +373,9 @@ export default {
       console.log(i);
     },
   },
+  mounted(){
+    this.focusInput();
+  }
 };
 </script>
 <style scoped>
