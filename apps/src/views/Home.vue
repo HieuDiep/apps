@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative container-fluid" tabindex="0">
+  <div class="position-relative container-fluid">
     <h4 class="m-3">BẢNG DANH SÁCH</h4>
     <font-awesome-icon icon="fa-long-arrow-alt-left" class="mr-2" />
     <input
@@ -24,12 +24,7 @@
       <div class="px-2">Add</div>
     </div>
     <br />
-    <div
-      class="dialog_del containbox position-absolute"
-      v-show="del_show"
-      @keyup.esc="del_show = false"
-      tabindex="1"
-    >
+    <div class="dialog_del containbox position-absolute" v-show="del_show" @keydown="del_show = false" tabindex="0">
       <form action="">
         <div class="contain_del">
           <h4 class="del_head">Delete data</h4>
@@ -59,8 +54,9 @@
     <div
       class="containbox position-absolute border"
       v-show="show"
-      @keyup.esc="show = false"
-      tabindex="2"
+      @keydown="show = false"
+      tabindex="0"
+      ref="edit_focus"
     >
       <form action="" class="">
         <h4 class="p-2 m-0 head_add">Add Data</h4>
@@ -147,7 +143,6 @@
           <button
             @click="show = false"
             class="btn btn-sm btn-light btn_back m-2"
-            ref="edit_focus"
           >
             <font-awesome-icon icon="fa-arrow-left" />
             Back
@@ -156,7 +151,6 @@
             type="submit"
             @click="addNew()"
             class="btn btn-sm btn-primary m-2"
-            ref="edit_focus"
           >
             Submit
           </button>
@@ -315,7 +309,14 @@ export default {
     },
   },
 
-  watch: {},
+  watch: {
+    show(show){
+      if(show)
+     this.$nextTick(() => {
+        this.$refs.edit_focus.focus();
+      });
+    }
+  },
   methods: {
     // handleCancel(){
     //   console.log("aaaaa")
@@ -474,9 +475,6 @@ export default {
       this.del_show = false;
     },
     editItem(item, i) {
-      this.$nextTick(() => {
-        this.$refs.edit_focus.focus();
-      });
       this.isErrors = {
         id: false,
         name: false,
@@ -524,6 +522,7 @@ export default {
   margin-left: 5px;
 }
 .containbox {
+  outline: none;
   right: 25%;
   top: 15%;
   background-color: #ffffff;
@@ -545,6 +544,7 @@ export default {
   font-size: 16x;
 }
 .dialog_del {
+  outline: none;
   right: 35%;
   padding-bottom: 15px;
   background-color: #ffffff;
