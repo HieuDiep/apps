@@ -1,8 +1,7 @@
 <template>
-  <div class="position-relative container-fluid">
+  <div class="position-relative container-fluid" tabindex="0">
     <h4 class="m-3">BẢNG DANH SÁCH</h4>
     <font-awesome-icon icon="fa-long-arrow-alt-left" class="mr-2" />
-    <!-- @keydown.enter="filterByName(nameFilter)" -->
     <input
       type="text"
       v-model="nameFilter"
@@ -15,23 +14,22 @@
       placeholder="from year"
       v-model="fromYear"
     />
-    <input
-      type="date"
-      placeholder="to year"
-      v-model="toYear"
-      @keydown.enter="filterByYear(fromYear, toYear)"
-    />
+    <input type="date" placeholder="to year" v-model="toYear" />
     <!-- <div class="btn m-2" @click="filterByYear(fromYear,toYear)"><font-awesome-icon icon="filter" /></div> -->
     <div
-      @click="setTimeout(funcAdd(),1000)"
+      @click="funcAdd()"
       class="add float-right ml-5 add d-flex align-items-center btn-sm pointer"
     >
       <font-awesome-icon icon="plus" class="mr-2" />
       <div class="px-2">Add</div>
     </div>
     <br />
-    <p>{{answer}}</p>
-    <div class="dialog_del containbox position-absolute" v-if="del_show">
+    <div
+      class="dialog_del containbox position-absolute"
+      v-show="del_show"
+      @keyup.esc="del_show = false"
+      tabindex="1"
+    >
       <form action="">
         <div class="contain_del">
           <h4 class="del_head">Delete data</h4>
@@ -47,6 +45,7 @@
               Cancel
             </button>
             <button
+              ref="del_focus"
               type="button"
               class="btn-sm btn-danger mx-3"
               @click="deletedata(temp_item)"
@@ -57,49 +56,98 @@
         </div>
       </form>
     </div>
-    <div class="containbox position-absolute border" v-if="show">
+    <div
+      class="containbox position-absolute border"
+      v-show="show"
+      @keyup.esc="show = false"
+      tabindex="2"
+    >
       <form action="" class="">
         <h4 class="p-2 m-0 head_add">Add Data</h4>
-        <!-- <p class="m-0" v-if="errors.length">
-          <b class="text-danger m-0">
-            Invalid input:
-            <h6
-              class="font-italic text-danger m-0"
-              v-for="error in errors"
-              :key="error.id"
-            >
-              {{ error }}
-            </h6>
-          </b>
-        </p> -->
         <div class="row mx-3">
           <div class="col mt-3">
             <label for="">Name</label><br />
-            <input class="input" type="text" v-model="name" :class="{errorInput:isErrors[0]}" @focus="isErrors[0]=false" ref="input2"/> <br />
-            <p class="text-danger text_err m-0" v-show="isErrors[0]">{{errors[0]}}</p>
+            <input
+              class="input"
+              type="text"
+              v-model="name"
+              :class="{ errorInput: isErrors.name }"
+              @focus="isErrors.name = false"
+              ref="input2"
+            />
+            <br />
+            <p class="text-danger text_err m-0" v-show="isErrors.name">
+              {{ errors.name }}
+            </p>
             <label for="">Price</label><br />
-            <input class="input" type="text" v-model="id" :class="{errorInput:isErrors[1]}" @focus="isErrors[1]=false"/> <br />
-            <p class="text-danger text_err m-0" v-show="isErrors[1]">{{errors[1]}}</p>
+            <input
+              class="input"
+              type="text"
+              v-model="id"
+              :class="{ errorInput: isErrors.id }"
+              @focus="isErrors.id = false"
+            />
+            <br />
+            <p class="text-danger text_err m-0" v-show="isErrors.id">
+              {{ errors.id }}
+            </p>
             <label for="">Link</label><br />
-            <input class="input" type="text" v-model="link" :class="{errorInput:isErrors[2]}" @focus="isErrors[2]=false"/> <br />
-            <p class="text-danger text_err m-0" v-show="isErrors[2]">{{errors[2]}}</p>
+            <input
+              class="input"
+              type="text"
+              v-model="link"
+              :class="{ errorInput: isErrors.link }"
+              @focus="isErrors.link = false"
+            />
+            <br />
+            <p class="text-danger text_err m-0" v-show="isErrors.link">
+              {{ errors.link }}
+            </p>
           </div>
           <div class="col mt-3">
             <label for="">Description</label><br />
-            <input class="input" type="text" v-model="description" :class="{errorInput:isErrors[3]}" @focus="isErrors[3]=false"/> <br />
-            <p class="text-danger text_err m-0" v-show="isErrors[3]">{{errors[3]}}</p>
+            <input
+              class="input"
+              type="text"
+              v-model="description"
+              :class="{ errorInput: isErrors.description }"
+              @focus="isErrors.description = false"
+            />
+            <br />
+            <p class="text-danger text_err m-0" v-show="isErrors.description">
+              {{ errors.description }}
+            </p>
             <label for="">Created at</label><br />
-            <input class="input day_input" type="date" v-model="created_at" :class="{errorInput:isErrors[4]}" @focus="isErrors[4]=false"/> <br />
-            <p class="text-danger text_err m-0" v-show="isErrors[4]">{{errors[4]}}</p>
+            <input
+              class="input day_input"
+              type="date"
+              v-model="created_at"
+              :class="{ errorInput: isErrors.created_at }"
+              @focus="isErrors.created_at = false"
+            />
+            <br />
+            <p class="text-danger text_err m-0" v-show="isErrors.created_at">
+              {{ errors.created_at }}
+            </p>
             <label for="">Updated at</label><br />
-            <input class="input day_input" type="date" v-model="updated_at" :class="{errorInput:isErrors[5]}" @focus="isErrors[5]=false"/> <br />
-            <p class="text-danger text_err m-0" v-show="isErrors[5]">{{errors[5]}}</p>
+            <input
+              class="input day_input"
+              type="date"
+              v-model="updated_at"
+              :class="{ errorInput: isErrors.updated_at }"
+              @focus="isErrors.updated_at = false"
+            />
+            <br />
+            <p class="text-danger text_err m-0" v-show="isErrors.updated_at">
+              {{ errors.updated_at }}
+            </p>
           </div>
         </div>
         <div class="d-flex justify-content-end">
           <button
             @click="show = false"
             class="btn btn-sm btn-light btn_back m-2"
+            ref="edit_focus"
           >
             <font-awesome-icon icon="fa-arrow-left" />
             Back
@@ -108,6 +156,7 @@
             type="submit"
             @click="addNew()"
             class="btn btn-sm btn-primary m-2"
+            ref="edit_focus"
           >
             Submit
           </button>
@@ -125,7 +174,7 @@
         <th scope="col">Action</th>
       </tr>
       <tbody>
-        <tr v-for="(item, i) in ProductInstance" :key="i" class="">
+        <tr v-for="(item, i) in filter" :key="i" class="">
           <td>
             <span class="data_inline">{{ item.name }}</span>
           </td>
@@ -161,52 +210,23 @@
 export default {
   component: {},
   data() {
-    const initProductInstance = [
-      {
-        id: 5400,
-        name: "Xe máy",
-        link: "https://infotrac.gale.com/itweb",
-        description: "Phân khối lớn",
-        created_at: "2022-07-31",
-        updated_at: "2021-07-27",
-      },
-      {
-        id: 53000,
-        name: "Ô tô",
-        link: "https://infotrac.gale.com/",
-        description: "Toyota",
-        created_at: "2003-07-31",
-        updated_at: "2021-07-31",
-      },
-      {
-        id: 400000,
-        name: "Nhà",
-        link: "https://infotrac.gale.com",
-        description: "được làm bằng gỗ",
-        created_at: "2000-07-31",
-        updated_at: "2021-07-31",
-      },
-      {
-        id: 200,
-        name: "Áo",
-        link: "https://infotrac.gale.com",
-        description: "Lông cừu",
-        created_at: "2019-07-31",
-        updated_at: "2021-07-31",
-      },
-      {
-        id: 500,
-        name: "Áo",
-        link: "https://infotrac.gale.com",
-        description: "da",
-        created_at: "2015-07-1",
-        updated_at: "2021-07-31",
-      },
-    ];
     return {
-      answer:'Không thể tìm thấy nếu bạn chưa nhập',
-      isErrors:[false,false,false,false,false,false],
-      errors: ['','','','','',''],
+      isErrors: {
+        id: false,
+        name: false,
+        link: false,
+        description: false,
+        created_at: false,
+        updated_at: false,
+      },
+      errors: {
+        id: "",
+        name: "",
+        link: "",
+        description: "",
+        created_at: "",
+        updated_at: "",
+      },
       temp_item: "",
       del_show: false,
       fromYear: "",
@@ -222,38 +242,92 @@ export default {
       description: "",
       created_at: "",
       updated_at: "",
-      ProductInstance: initProductInstance,
-      ProductInstance2: initProductInstance,
+      initProductInstance: [
+        {
+          id: 5400,
+          name: "Xe máy",
+          link: "https://infotrac.gale.com/itweb",
+          description: "Phân khối lớn",
+          created_at: "2022-07-31",
+          updated_at: "2021-07-27",
+        },
+        {
+          id: 53000,
+          name: "Ô tô",
+          link: "https://infotrac.gale.com/",
+          description: "Toyota",
+          created_at: "2003-07-31",
+          updated_at: "2021-07-31",
+        },
+        {
+          id: 400000,
+          name: "Nhà",
+          link: "https://infotrac.gale.com",
+          description: "được làm bằng gỗ",
+          created_at: "2000-07-31",
+          updated_at: "2021-07-31",
+        },
+        {
+          id: 200,
+          name: "Áo",
+          link: "https://infotrac.gale.com",
+          description: "Lông cừu",
+          created_at: "2019-07-31",
+          updated_at: "2021-07-31",
+        },
+        {
+          id: 500,
+          name: "Áo",
+          link: "https://infotrac.gale.com",
+          description: "da",
+          created_at: "2015-07-1",
+          updated_at: "2021-07-31",
+        },
+      ],
     };
   },
-
-  watch: {
-    nameFilter: function(){
-      this.answer='Đang chờ bạn nhập...';
-      this.filterByName(this.nameFilter);
+  computed: {
+    filter() {
+      var arr = [...this.initProductInstance];
+      if (this.nameFilter !== "")
+        return arr.filter((item) =>
+          item.name
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D")
+            .includes(
+              this.nameFilter
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/đ/g, "d")
+                .replace(/Đ/g, "D")
+            )
+        );
+      if (this.fromYear !== "" && this.toYear !== "")
+        return arr.filter(
+          (item) =>
+            this.fromYear <= item.created_at && item.created_at <= this.toYear
+        );
+      return arr;
     },
   },
+
+  watch: {},
   methods: {
-    focusInput(){
+    // handleCancel(){
+    //   console.log("aaaaa")
+    // },
+    comf_delete(item) {
+      // console.log("hello");
+      this.del_show = true;
+      this.temp_item = item;
+      this.$nextTick(() => this.$refs.del_focus.focus());
+    },
+    focusInput() {
       this.$refs.input.focus();
-    },
-    filterByName(e) {
-      if (e != "") {
-        const a = this.ProductInstance2.filter((item) => {
-          console.log(item.name,e);
-          item.name === e ? this.answer='Đã tìm thấy ':this.answer='Không tìm thấy ';
-          return item.name === e;
-        });
-        console.log(a);
-        this.ProductInstance = a;
-      }
-    },
-    filterByYear(fromYear, toYear) {
-      console.log(fromYear, toYear);
-      const a = this.ProductInstance2.filter((item) => {
-        return fromYear <= item.created_at && item.created_at <= toYear;
-      });
-      this.ProductInstance = a;
     },
     funcAdd() {
       this.show = true;
@@ -265,47 +339,68 @@ export default {
       this.description = "";
       this.created_at = "";
       this.updated_at = "";
-      this.errors= ['','','','','',''],
-      this.isErrors=[];
+      (this.errors = {
+        id: "",
+        name: "",
+        link: "",
+        description: "",
+        created_at: "",
+        updated_at: "",
+      }),
+        (this.isErrors = {
+          id: false,
+          name: false,
+          link: false,
+          description: false,
+          created_at: false,
+          updated_at: false,
+        });
       /*
         nextTick( [callback, context] )
       Defer the callback to be executed after the next DOM update cycle.
        Use it immediately after you’ve changed some data to wait for the DOM update.*/
-      this.$nextTick(()=>{
-        this.$refs.input2.focus(); 
-      })
+      this.$nextTick(() => {
+        this.$refs.input2.focus();
+      });
     },
     addNew() {
-      this.errors = [];
+      this.isErrors = {
+        id: false,
+        name: false,
+        link: false,
+        description: false,
+        created_at: false,
+        updated_at: false,
+      };
+      //check input
       if (!this.name) {
-        this.isErrors[0]=true;
-        this.errors[0]="Name required.";
+        this.isErrors.name = true;
+        this.errors.name = "Name required.";
         this.show = true;
       }
       if (!this.id) {
-        this.isErrors[1]=true;
-        this.errors.push("Price required.");
-        this.errors[1]="Name required.";
+        this.isErrors.id = true;
+        this.errors.id = "id required.";
         this.show = true;
       }
       if (!this.link) {
-        this.isErrors[2]=true;
-        this.errors[2]="Link required.";
+        this.isErrors.link = true;
+        this.errors.link = "Link required.";
         this.show = true;
       }
       if (!this.description) {
-        this.isErrors[3]=true;
-        this.errors[3]="Age required.";
+        this.isErrors.description = true;
+        this.errors.description = "Age required.";
         this.show = true;
       }
       if (!this.created_at) {
-        this.isErrors[4]=true;
-        this.errors[4]="Created at required.";
+        this.isErrors.created_at = true;
+        this.errors.created_at = "Created at required.";
         this.show = true;
       }
       if (!this.updated_at) {
-        this.isErrors[5]=true;
-        this.errors[5]="Updated at required.";
+        this.isErrors.updated_at = true;
+        this.errors.updated_at = "Updated at required.";
         this.show = true;
       }
       if (
@@ -317,10 +412,11 @@ export default {
         !this.name
       ) {
         this.show = true;
-        return 0;
+        return;
       }
+      //add
       if (this.add) {
-        this.ProductInstance.push({
+        this.filter.push({
           id: this.id,
           name: this.name,
           link: this.link,
@@ -332,9 +428,24 @@ export default {
       } else {
         this.show = true;
       }
+      //edit
       if (!this.add) {
-        this.errors=['','','','','',''],
-        this.isErrors=[false,false,false,false,false,false],
+        this.errors = {
+          id: "",
+          name: "",
+          link: "",
+          description: "",
+          created_at: "",
+          updated_at: "",
+        };
+        this.isErrors = {
+          id: false,
+          name: false,
+          link: false,
+          description: false,
+          created_at: false,
+          updated_at: false,
+        };
         this.tempItem = {
           id: this.id,
           name: this.name,
@@ -343,24 +454,45 @@ export default {
           created_at: this.created_at,
           updated_at: this.updated_at,
         };
-        console.log("edit ------", this.tempItem);
-        this.ProductInstance[this.temp] = this.tempItem;
+        // console.log("edit ------", this.tempItem);
+        this.filter[this.temp] = this.tempItem;
         this.show = false;
       }
-      this.errors ['','','','','',''];
+      this.errors = {
+        id: "",
+        name: "",
+        link: "",
+        description: "",
+        created_at: "",
+        updated_at: "",
+      };
     },
-    comf_delete(item) {
-      console.log("hello");
-      this.del_show = true;
-      this.temp_item = item;
-    },
+
     deletedata(item) {
-      let index = this.ProductInstance.indexOf(item);
-      this.ProductInstance.splice(index, 1);
+      let index = this.filter.indexOf(item);
+      this.filter.splice(index, 1);
       this.del_show = false;
     },
     editItem(item, i) {
-      this.errors ['','','','','',''];
+      this.$nextTick(() => {
+        this.$refs.edit_focus.focus();
+      });
+      this.isErrors = {
+        id: false,
+        name: false,
+        link: false,
+        description: false,
+        created_at: false,
+        updated_at: false,
+      };
+      this.errors = {
+        id: "",
+        name: "",
+        link: "",
+        description: "",
+        created_at: "",
+        updated_at: "",
+      };
       this.show = true;
       this.add = false;
       this.id = item.id;
@@ -370,19 +502,19 @@ export default {
       this.created_at = item.created_at;
       this.updated_at = item.updated_at;
       this.temp = i;
-      console.log(i);
+      // console.log(i);
     },
   },
-  mounted(){
+  mounted() {
     this.focusInput();
-  }
+  },
 };
 </script>
 <style scoped>
-.day_input{
+.day_input {
   width: 203px;
 }
-.text_err{
+.text_err {
   font-size: 12px;
 }
 .form_box {
@@ -438,7 +570,7 @@ export default {
   background-color: #0d6efd;
   color: white;
 }
-.errorInput{
-  border:1px solid red;
+.errorInput {
+  border: 1px solid red;
 }
 </style>
