@@ -312,15 +312,12 @@ export default {
     }
   },
   methods: {
-    // handleCancel(){
-    //   console.log("aaaaa")
-    // },
     comf_delete(item) {
-      // console.log("hello");
       this.del_show = true;
       this.temp_item = item;
       this.$nextTick(() => this.$refs.del_focus.focus());
     },
+    //focus when init app
     focusInput() {
       this.$refs.input.focus();
     },
@@ -487,7 +484,6 @@ export default {
       this.created_at = item.created_at;
       this.updated_at = item.updated_at;
       this.temp = i;
-      // console.log(i);
     },
   },
   mounted() {

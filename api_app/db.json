@@ -1,0 +1,85 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "price": 109.95,
+      "name": "Your perfect pack ",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Mens",
+      "price": 22.3,
+      "name": "Slim-fitting style.",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+    },
+    {
+      "title": "Laptops",
+      "price": 109.95,
+      "name": "it so good for work",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "id": 3
+    },
+    {
+      "title": "Laptops",
+      "price": 109.95,
+      "name": "it so good for work",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "id": 4
+    },
+    {
+      "title": "test product ",
+      "price": 13.5,
+      "name": "lorem ipsum set",
+      "image": "https://i.pravatar.cc",
+      "category": "electronic",
+      "id": 6
+    },
+    {
+      "title": "người",
+      "price": "10000000",
+      "name": "Ao",
+      "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "category": "người",
+      "id": 7
+    },
+    {
+      "title": "người",
+      "price": "10000000",
+      "name": "Ao",
+      "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "category": "người",
+      "id": 7
+    },
+    {
+      "title": "người",
+      "price": "10000000",
+      "name": "Ao",
+      "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "category": "người",
+      "id": 7
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
