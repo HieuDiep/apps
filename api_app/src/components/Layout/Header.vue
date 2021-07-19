@@ -15,13 +15,15 @@
         <p class="m-2">Đăng nhập</p>
       </div>
     </div>
-    <div class="nav_bottom d-flex justify align-items-center">
+    <div class="nav_bottom d-flex justify mt-3">
       <div class="nav_brand col-3">
-        <img
-          class="img_brand"
-          src="https://deo.shopeemobile.com/shopee/shopee-mobilemall-live-sg/assets/d010b985fc1475e559b6db819889703c.png"
-          alt=""
-        />
+        <a href="/">
+          <img
+            class="img_brand"
+            src="https://deo.shopeemobile.com/shopee/shopee-mobilemall-live-sg/assets/d010b985fc1475e559b6db819889703c.png"
+            alt=""
+          />
+        </a>
       </div>
       <div class="nav_search col-7 d-flex flex-column">
         <div class="col d-flex">
@@ -41,9 +43,10 @@
           ><a>Son</a><a>Áo phông</a>
         </p>
       </div>
-      <div class="nav_cart col-2">
-        <img src="" alt="" />
-        <p>cart</p>
+      <div class="nav_cart col-2 text-left">
+        <router-link to="/cart">
+          <img class="mt-2 imgCart" src="../../assets/cart.png" alt=""/>
+        </router-link>
       </div>
     </div>
   </div>
@@ -95,8 +98,8 @@ export default {
   outline: none;
 }
 .search_button {
-  width: 60px;
-  height: 40px;
+  width: 70px;
+  height: 50px;
   padding: 5px;
   background-color: white;
   border: none;
@@ -115,5 +118,8 @@ a {
   height: 20px;
   background-image: url("../../assets/fb.png");
   background-repeat: no-repeat;
+}
+.imgCart{
+  cursor: pointer;
 }
 </style>
