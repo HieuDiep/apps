@@ -12,13 +12,12 @@
 <script>
 import ProductItem from "./ProductItem.vue";
 export default {
-  props:['dataList'],
+  props: ["dataList"],
   components: {
     ProductItem,
   },
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>

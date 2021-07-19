@@ -24,7 +24,7 @@
         />
       </div>
       <div class="nav_search col-7 d-flex flex-column">
-        <div class="col d-flex flex-row flex-wrap">
+        <div class="col d-flex">
           <input
             type="text"
             class="search_input p-2"
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     searchProduct() {
-      this.$emit("dataSearch",this.textSearch);
+      this.$emit("dataSearch", this.textSearch);
     },
   },
 };
@@ -92,6 +92,7 @@ export default {
   background-color: white;
   border: none;
   text-decoration: none;
+  outline: none;
 }
 .search_button {
   width: 60px;

@@ -1,11 +1,7 @@
 <template>
   <div>
-    <Header 
-      @dataSearch = "dataSearch = $event"
-    />
-    <ListProduct 
-        :dataList= "filterData"
-    />
+    <Header @dataSearch="dataSearch = $event" />
+    <ListProduct :dataList="filterData" />
   </div>
 </template>
 
@@ -19,16 +15,16 @@ export default {
     Header,
     ListProduct,
   },
-  data(){
-    return{
-        dataList:[],
-        dataSearch:'',
-    }
+  data() {
+    return {
+      dataList: [],
+      dataSearch: "",
+    };
   },
-  methods:{
-    showdata(){
+  methods: {
+    showdata() {
       console.log(this.dataSearch);
-    }
+    },
   },
   created() {
     axios
@@ -41,11 +37,11 @@ export default {
         console.log(res);
       });
   },
-  computed:{
+  computed: {
     filterData() {
       let arr = [...this.dataList];
-      if (this.dataSearch !== ""){
-        console.log(this.dataSearch)
+      if (this.dataSearch !== "") {
+        console.log(this.dataSearch);
         return arr.filter((item) =>
           item.name
             .toLowerCase()
@@ -65,7 +61,6 @@ export default {
       }
       return arr;
     },
-  }
-
+  },
 };
 </script>

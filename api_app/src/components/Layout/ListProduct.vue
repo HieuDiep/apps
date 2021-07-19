@@ -8,7 +8,7 @@
 import List from "../Product/List.vue";
 import Banner from "../Banner/Banner.vue";
 export default {
-  props:['dataList'],
+  props: ["dataList"],
   components: {
     List,
     Banner,

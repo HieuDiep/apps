@@ -9,9 +9,8 @@ import PageProduct from "@/components/Page/PageProduct";
 
 export default {
   components: {
-    PageProduct
+    PageProduct,
   },
-  data(){
-  }
+  data() {},
 };
 </script>

@@ -1,10 +1,12 @@
 <template>
-  <li class="ul_data col-3 ">
-    <img class="img" :src="product.image" alt="Card image cap" />
-    <div class="des">
-      <p class="card-text">{{ product.name }}</p>
-      <p>{{ product.price }} VNĐ</p>
-    </div>
+  <li class="ul_data col-3">
+    <router-link :to="{ name: 'productDetail', params: { id: product.id } }">
+      <img class="img" :src="product.image" alt="Card image cap" />
+      <div class="des">
+        <p class="card-text">{{ product.name }}</p>
+        <p>{{ product.price }} VNĐ</p>
+      </div>
+    </router-link>
   </li>
 </template>
 <script>

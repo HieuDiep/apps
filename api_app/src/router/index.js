@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-
+import productDetail from "../components/Product/ProductDetail.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -10,13 +10,15 @@ const routes = [
     name: "Home",
     component: Home,
   },
-  // {
-  //   path:"/",
-  //   name:"Product"
-  // }
+  {
+    path: "/productDetail/:id",
+    name: "productDetail",
+    component: productDetail,
+  },
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes,
 });
 

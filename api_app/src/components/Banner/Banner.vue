@@ -27,6 +27,23 @@
         </div>
       </div>
     </div>
+    <div class="bannerButton d-flex">
+      <a href="" class="col">
+        <div class="bItem">
+          <div class="itemImg"></div>
+          <p>Ở Nhà Không Khó</p>
+        </div>
+      </a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+      <a href=""></a>
+    </div>
   </div>
 </template>
 
@@ -70,6 +87,11 @@ export default {
 </script>
 
 <style>
+.itemImg {
+  background-image: url(https://cf.shopee.vn/file/53d059b1f2592c05b8df8ae835950a2b_xhdpi);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .slide_show {
   object-fit: cover;
 }
