@@ -54,7 +54,7 @@
       "name": "Ao",
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
       "category": "người",
-      "id": 7
+      "id": 8
     },
     {
       "title": "người",
@@ -62,7 +62,42 @@
       "name": "Ao",
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
       "category": "người",
-      "id": 7
+      "id": 9
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "title": "Fjallraven - Foldsack No. 1 Backpack,",
+      "price": 109.95,
+      "name": "Fits 15 Laptops",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg"
+      
+    },
+    {
+      "title": "Fjallraven - Foldsack No. 1 Backpack,",
+      "price": 109.95,
+      "name": "Fits 15 Laptops",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+      "id": 2
+    },
+    {
+      "title": "test product ",
+      "price": 13.5,
+      "name": "lorem ipsum set",
+      "category": "electronic",
+      "image": "https://i.pravatar.cc",
+      "id": 2
+    },
+    {
+      "title": "Fjallraven - Foldsack No. 1 Backpack,",
+      "price": 109.95,
+      "name": "Fits 15 Laptops",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+      "id": 3
     }
   ],
   "posts": [

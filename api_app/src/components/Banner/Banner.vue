@@ -31,18 +31,8 @@
       <a href="" class="col">
         <div class="bItem">
           <div class="itemImg"></div>
-          <p>Ở Nhà Không Khó</p>
         </div>
       </a>
-      <a href=""></a>
-      <a href=""></a>
-      <a href=""></a>
-      <a href=""></a>
-      <a href=""></a>
-      <a href=""></a>
-      <a href=""></a>
-      <a href=""></a>
-      <a href=""></a>
     </div>
   </div>
 </template>

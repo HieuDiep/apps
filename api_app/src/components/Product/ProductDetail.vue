@@ -35,9 +35,7 @@
           </div>
         </div>
       </div>
-      
     </div>
-
 </div>
 </template>
 
@@ -55,9 +53,10 @@ export default {
   },
   created(){
     this.getProductDetail();
+    console.log("created", this.productDetail);
   },
   methods:{
-    getProductDetail(){
+     getProductDetail(){
        let idDetail = this.$route.params.id;
         axios.get("http://localhost:3000/products/" + idDetail)
         .then((res) => {
@@ -68,7 +67,21 @@ export default {
         });
     },
     addToCart(product){
-      alert("Thêm sản phẩm "+ product.name + "  Thành công !")
+      let item = {
+      "title": product.title,
+      "price": product.price,
+      "name": product.name,
+      "category": product.category,
+      "image": product.image
+    }
+      axios.post("http://localhost:3000/cart/" , item)
+      .then((res)=>{
+        console.log(res);
+        alert("Thêm sản phẩm Thành công !")
+      })
+      .catch((res)=>{
+        console.log(res);
+      })
     }
   },
 
